@@ -12,6 +12,14 @@ app.use(bodyParser.urlencoded({
   app.use(cookieParser());
   app.use(express.json());
 
+  const dbRouter = require('./routers/dbRouter');
+  const consumerRouter = require('./routers/consumerRouter');
+  const producerRouter = require('./routers/producerRouter');
+
+  app.use('/db', dbRouter);
+  app.use('/consumer', consumerRouter);
+  app.use('/producer', producerRouter);
+
 
 app.listen(PORT, ()=> console.log(`listing on ${PORT}`))
 module.exports = app;
