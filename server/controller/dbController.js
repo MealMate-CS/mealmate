@@ -1,2 +1,2 @@
-const db = {};
+const dbController = {};
 module.exports = dbController;
