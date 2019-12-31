@@ -1,5 +1,10 @@
 import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 class LoginContainer extends React.Component {
     constructor(props) {
@@ -31,11 +36,19 @@ class LoginContainer extends React.Component {
             userId : this.state.userId,
             password : this.state.password
         }
-        // fetch('/')
-
-
-
-
+        fetch('/userlogin', {
+            method: 'GET', 
+            body: JSON.stringify(body), 
+            headers : {'Content-Type': 'application/json'}
+        })
+        .then(data => data.json())
+        .then(result => {
+            console.log('result in loginSubmit =>', result)
+        })
+        .catch(err => {
+            console.log(err)
+            this.setState({errorMessage: `${JSON.stringify(err)}`})
+        })
     }
 
     
@@ -48,9 +61,10 @@ class LoginContainer extends React.Component {
                     <input type='password' id='login-password' placeholder='Your Password' onChange={this.setLoginPassword} required />
                     <input type='button' id='login-button' value='Log In' onClick={this.loginSubmit}/>
                     {this.state.errorMessage}
-
+                    <Link to='/signup'>
+                        <input type='button' id='signup-button' value='Sign Up'></input>
+                    </Link>
                 </section>
-
             </div>
         )
     }
