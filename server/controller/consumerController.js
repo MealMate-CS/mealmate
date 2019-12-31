@@ -14,7 +14,7 @@ consumerController.recentHistory = (req, res, next) => {
 consumerController.createReservation = (req, res, next) => {
     const restaurant = req.body.restaurant;
     const createdAt = req.body.createdAt;
-    const timeFrame = req.body.timeFrame
+    const timeFrame = req.body.timeFrame;
     pool.query('INSERT INTO Consumers (history) VALUES ($1, $2, $3)', [restaurant, createdAt, timeFrame], (error, results) => {
         if(error) {
             throw error
