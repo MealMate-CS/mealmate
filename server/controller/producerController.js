@@ -1,2 +1,2 @@
 const producer = {};
-module.exports = producer;
+module.exports = producerController;
