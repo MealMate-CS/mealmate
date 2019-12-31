@@ -1,2 +1,2 @@
 const consumer ={};
-module.exports = consumer;
+module.exports = consumerController;
