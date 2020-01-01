@@ -1,32 +1,38 @@
 import React from 'react'
 
-class SignupContainer extends React.Component {
+class SignupAsReceiverContainer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             newUserId : '',
             newPassword : '',
-            newUserType : '',
-            errorMessage: ''
+            errorMessage: '',
+            newUserPhoneNumber: ''
         }
         this.setSignupId = this.setSignupId.bind(this)
         this.setSignupPassword  = this.setSignupPassword.bind(this)
         this.signupSubmit = this.signupSubmit.bind(this)
+        this.setPhoneNumber = this.setPhoneNumber.bind(this)
     }
 
     setSignupId(event) {
-        this.setState({userId:event.target.value})
+        this.setState({newUserId:event.target.value})
+        console.log()
     }
     setSignupPassword(event) {
-        this.setState({password:event.target.value})
+        this.setState({newPassword:event.target.value})
+    }
+    setPhoneNumber(event) {
+        this.setState({newUserPhoneNumber:event.target.value})
     }
     signupSubmit() {
         const body = {
             newUserId : this.state.newUserId,
             newPassword : this.state.newPassword,
-            newUserTye : this.state.newUserType
+            newUserPhoneNumber : this.state.newUserPhoneNumber
         }
-        fetch('/usersignup', {
+        console.log('body for signupSubmit is', body)
+        fetch('/receiversignup', {
             method: 'POST', 
             body: JSON.stringify(body), 
             headers : {'Content-Type': 'application/json'}
@@ -37,7 +43,7 @@ class SignupContainer extends React.Component {
         })
         .catch(err => {
             console.log(err)
-            this.setState({errorMessage: `${JSON.stringify(err)}`})
+            this.setState({errorMessage: JSON.stringify(err)    })
         })
     }
 
@@ -47,17 +53,13 @@ class SignupContainer extends React.Component {
                 <section id="user-signup-input">
                     <input type='input' id='signup-username' placeholder='New Username' onChange={this.setSignupId} required />
                     <input type='password' id='signup-password' placeholder='New Password' onChange={this.setSignupPassword} required />
-                    <input type='button' id='signup-button' value='Sign Up' onClick={this.SignupSubmit}/>
+                    <input type='input' id='signup-phone-number' placeholder='Phone Number' onChange={this.setPhoneNumber} required />
+                    <input type='button' id='signup-button' value='Sign Up As Receiver' onClick={this.signupSubmit}/>
                     {this.state.errorMessage}
                 </section>
             </div>
         )
     }
-
-
-
-
-
 }
 
-export default SignupContainer;
+export default SignupAsReceiverContainer;
