@@ -1,11 +1,36 @@
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom'
+import {images} from '../slideshow_images/images'
+import { Gallery, GalleryImage} from 'react-gesture-gallery'
 
-class Slideshow extends React.Component {
-    render() {
-        return(
-            <h1>This will be slideshow</h1>
-        )
-    }
+function Slideshow() {
+    const [index, setIndex] = React.useState(0)
+    React.useEffect(() => {
+        const interval = setInterval(() => {
+            if (index === images.length - 1) {
+                setIndex(0)
+            } else {
+                setIndex(index + 1)
+            }
+        }, 2000)
+        return () => clearInterval(interval)
+    }, [index])
+    return(
+        <Gallery
+            style={{
+                heigth: '200px',
+                width: 'auto', 
+            }}
+            index={index}
+            onRequestChange= {i => {
+                setIndex(i);
+            }}
+        >
+            {images.map(image => (
+                <GalleryImage objectFit="fit" src={image} style={{height: '400px', width: 'auto'}}/>
+            ))}
+        </Gallery>
+    )
 }
 
 export default Slideshow

@@ -1,6 +1,7 @@
 import React from 'react'
 import LoginContainer from './LoginContainer.jsx'
-import SignupContainer from './SignupContainer.jsx'
+import SignupAsDonorContainer from './SignupAsDonorContainer.jsx'
+import SignupAsReceiverContainer from './SignupAsReceiverContainer.jsx'
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,7 +15,8 @@ class HomeContainer extends React.Component {
                 <div id='home-container'>
                     <Switch>
                         <Route path='/' exact component={LoginContainer} />
-                        <Route path='/signup' component={SignupContainer} />                        
+                        <Route path='/signupasdonor' component={SignupAsDonorContainer} />
+                        <Route path='/signupasreceiver' component={SignupAsReceiverContainer} />                        
                     </Switch>
                 </div>
             </Router>
