@@ -30,6 +30,19 @@ consumerController.createReservation = (req, res, next) => {
     return next();
 }
 
+consumerController.getMenuItems = (req,res,next)=>{
+    const text= 'SELECT * FROM Menu';
+    db.query(text,(err,data)=>{
+        if(err) return err;
+        else{
+            res.locals.data = data.rows;
+            return next();
+        }
+    })
+}
+
+
+
 consumerController.sendReservationEmail = (req, res, next) => {
     console.log('trying to send reservation email')
     const restaurant = req.body.restaurant;
@@ -60,4 +73,6 @@ consumerController.sendReservationEmail = (req, res, next) => {
     });
     return next();
 };
+
+
 module.exports = consumerController;
