@@ -1,2 +1,4 @@
-const consumer ={};
+const consumerController={};
+
+
 module.exports = consumerController;
