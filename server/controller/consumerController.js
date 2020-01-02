@@ -1,26 +1,33 @@
 const consumerController ={};
 const pool = require('../database/database')
+const nodemailer = require('nodemailer');
 
 consumerController.recentHistory = (req, res, next) => {
-    const username = req.body.username
-    pool.query('SELECT Consumer.history FROM User, Consumer WHERE User.$1 = Consumer.username', [username], (error, results) => {
+    const userId = req.body.userId
+    pool.query('SELECT * FROM History WHERE username = $1 ORDER BY created_at DESC LIMIT 10', [userId], (error, results) => {
         if(error){
-            throw error;
+            throw error
+        } else {
+        res.locals.results = results;
         }
-        res.status(200).json(results.rows)
     })
+    return next();
 }
 
 consumerController.createReservation = (req, res, next) => {
+    //need to add DEFAULT NOW() to the created_at column in the History table
     const restaurant = req.body.restaurant;
-    const createdAt = req.body.createdAt;
+    // const createdAt = Math.floor(Date.now() / 1000);
     const timeFrame = req.body.timeFrame;
-    pool.query('INSERT INTO Consumers (history) VALUES ($1, $2, $3)', [restaurant, createdAt, timeFrame], (error, results) => {
+    const userId = req.body.userId;
+    pool.query('INSERT INTO History (username, restaurant, time_frame, created_at) VALUES ($1, $2, $3, NOW())', [userId, restaurant, timeFrame], (error, results) => {
         if(error) {
             throw error
+        } else {
+        res.locals.message = `Reservation set for ${restaurant} from ${timeFrame}`
         }
-        res.status(200).send(`Reservation set for ${restaurant} from ${timeFrame}`)
     })
+    return next();
 }
 
 consumerController.getAddress = (req, res, next) => {
@@ -48,3 +55,4 @@ consumerController.getItems = (req, res, next) => {
 }
 
 module.exports = consumerController;
+
