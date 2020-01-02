@@ -3,10 +3,10 @@ const router = express.Router();
 const dbController = require('../controller/dbController');
 
 router.post('/donorSignUp',dbController.donorSignUp,dbController.sendDonorEmail,  (req,res)=>{
-    res.sendStatus('Donor Created');
+    res.sendStatus(200);
 })
 router.post('/receiverSignUp', dbController.receiverSignUp, dbController.sendReceiverEmail,(req,res)=>{
-    res.sendStatus('Receiver Created');
+    res.sendStatus(200);
 })
 router.post('/userLogin', dbController.checkLogin,(req,res)=>{
     res.status(200).json(res.locals.userInfo);
