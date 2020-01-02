@@ -38,19 +38,26 @@ dbController.checkLogin = (req,res,next) =>{
     const text = 'SELECT * FROM Receiver WHERE username = $1 AND password = $2';
     const params = [user, pass]
     db.query(text,params,(err,data)=>{
-        if(err){
+        console.log('data is', data.rows) 
+        if (data.rows.length === 0) {
             const nest_text = 'SELECT * FROM Donor WHERE username = $1 AND password = $2';
-            db.query(nest_text,params, (err,data)=>{
-                if(err) return err;
-                else{
-                    res.locals.type = 'Donor'
-                    return next();
+            db.query(nest_text, params, (err, result) => {
+                if (result.rows.length === 0) {
+                    res.locals.userInfo = 'No Such User Exists'
+                    console.log(res.locals.userInfo)
+                    return next()
+                } else {
+                    console.log('user exsists and info is', result.rows[0])
+                    res.locals.userInfo = result.rows[0]
+                    return next()
                 }
             })
+        } else if (data.rows.length > 0) {
+            res.locals.userInfo = data.rows[0]
+            return next()
         }
-        else{
-            res.locals.type = 'Receiver';
-            return next();
+        if(err) {
+            return err
         }
     })
 }
