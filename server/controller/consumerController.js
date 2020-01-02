@@ -24,13 +24,27 @@ consumerController.createReservation = (req, res, next) => {
 }
 
 consumerController.getAddress = (req, res, next) => {
-    pool.query('SELECT address FROM Donor', (error, results) => {
-      if (error){
-        throw error;
-      }
+  const text = 'SElECT address FROM donor'
+  pool.query(text, (error, results) => {
+    if (error){
+      throw error;
+    } else {
       res.locals.results = results.rows
       return next();
-    })
+    }
+  })
+}
+
+consumerController.getItems = (req, res, next) => {
+  const text = `SELECT * FROM menu`
+  pool.query(text, (error, results) => {
+    if (error){
+      throw error;
+    } else {
+      res.locals.results = results.rows
+      return next();
+    }
+  })
 }
 
 module.exports = consumerController;

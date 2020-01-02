@@ -14,4 +14,8 @@ router.get('/donorAddress', consumerController.getAddress, (req, res) => {
   res.json(res.locals.results)
 })
 
+router.get('/getItems', consumerController.getItems, (req,res) => {
+  res.json(res.locals.results)
+})
+
 module.exports = router;
