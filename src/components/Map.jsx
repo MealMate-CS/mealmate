@@ -2,8 +2,10 @@ import React from 'react';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
 import Geocode from 'react-geocode';
 
+const googleAPI = "AIzaSyAXSvD9_IUVXmkaj943_LTKjXxrlWXFTHY"
+
 // set up Google API to use react-geocode
-Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`)
+Geocode.setApiKey(`${googleAPI}}`)
 
 // set default location to venice beach, ca
 let currLat = 33.875220;
@@ -85,7 +87,7 @@ const Map = () => {
     <div id="map">
       <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${
-          process.env.REACT_APP_GOOGLE_KEY
+          googleAPI
         }`}
         loadingElement={<div className="map-elements" />}
         containerElement={<div className="map-elements" />}
