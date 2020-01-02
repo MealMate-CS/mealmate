@@ -1,3 +1,4 @@
+
 const producerController= {};
 // const WebHDFS = require('webhdfs');
 
@@ -9,7 +10,7 @@ producerController.addMenuItems = (req,res,next) =>{
     
     const expirationDate = req.body.expirationDate;
     const name= req.body.name;
-    const text ='INSERT INTO Menu (itemName, allergy, expirationDate, menuId) VALUES'
+    const text ='INSERT INTO Menu (itemName, allergy, expirationDate, name) VALUES'
     for(let i =0; i < itemName.length;i+=1){
         let additionalText = `(${itemName},${itemAllergy},${expirationDate},${name})`
         text.concat(additionalText);
@@ -23,6 +24,7 @@ producerController.addMenuItems = (req,res,next) =>{
         }
     }
 }
+
 //grab from google places based on address;
 //this will be used for getting hours and used later on
 // producerController.getHours = (req,res,next) =>{
@@ -86,4 +88,5 @@ producerController.pushItemIntoMenuTable = (req,res,next) =>{
 
 
 }
+
 module.exports = producerController;

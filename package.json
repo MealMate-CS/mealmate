@@ -7,23 +7,30 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "aws-sdk": "^2.597.0",
     "cookie-parser": "^1.4.4",
+    "cross-env": "^6.0.3",
     "express": "^4.17.1",
     "multer": "^1.4.2",
     "nodemon": "^2.0.2",
     "pg": "^7.17.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-geocode": "^0.2.1",
+    "react-gesture-gallery": "^1.1.0",
+    "react-gesture-responder": "^2.1.0",
+    "react-google-maps": "^9.4.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "webhdfs": "^1.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "server": "nodemon server/server.js",
+    "build": "cross-env NODE_ENV=production webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-dev": "nodemon server/server"
+    "dev": "concurrently \"cross-env webpack-dev-server --open\" \"cross-env nodemon server/server.js || true\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,5 +46,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "babel-loader": "^8.0.6",
+    "concurrently": "^5.0.0",
+    "css-loader": "^3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "nodemon": "^2.0.2",
+    "react-svg-loader": "^3.0.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   }
 }
