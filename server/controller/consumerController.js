@@ -60,4 +60,15 @@ consumerController.sendReservationEmail = (req, res, next) => {
     });
     return next();
 };
+
+consumerController.getAddress = (req, res, next) => {
+    pool.query('SELECT address FROM Donor', (error, results) => {
+      if (error){
+        throw error;
+      }
+      res.locals.results = results.rows
+      return next();
+    })
+}
+
 module.exports = consumerController;

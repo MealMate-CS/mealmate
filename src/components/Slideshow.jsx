@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {images} from '../slideshow_images/images'
 import { Gallery, GalleryImage} from 'react-gesture-gallery'
 
-function Slideshow() {
+const Slideshow = () => {
     const [index, setIndex] = React.useState(0)
-    React.useEffect(() => {
+    useEffect(() => {
         const interval = setInterval(() => {
             if (index === images.length - 1) {
                 setIndex(0)
@@ -25,8 +25,8 @@ function Slideshow() {
                 setIndex(i);
             }}
         >
-            {images.map(image => (
-                <GalleryImage objectFit="fit" src={image} style={{height: '400px', width: 'auto'}}/>
+            {images.map((image, i) => (
+                <GalleryImage key={i} objectFit="fit" src={image} style={{height: '400px', width: 'auto'}}/>
             ))}
         </Gallery>
     )
