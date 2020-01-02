@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer')
 
 const db = require('../database/database');
 dbController.donorSignUp = (req,res,next) =>{
+    console.log('trying to signup as donor')
     const user = req.body.newUserId;
     const pass = req.body.newPassword;
     const phoneNumber = req.body.newUserPhoneNumber;
@@ -19,7 +20,7 @@ dbController.donorSignUp = (req,res,next) =>{
     })
 }
 dbController.sendDonorEmail = (req, res, next) => {
-    console.log('trying to send')
+    console.log('trying to send email')
     const user = req.body.newUserId;
     const name = req.body.newUserOrganization;
     const transporter = nodemailer.createTransport({
@@ -59,7 +60,35 @@ dbController.receiverSignUp = (req, res, next) =>{
             return next();
         }
     })
-}
+};
+dbController.sendReceiverEmail = (req, res, next) => {
+    console.log('trying to send receiver email')
+    const username = req.body.newUserId;
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'MealMate747@gmail.com',
+            pass: 'MealMate1234'
+        }
+    });
+    const messageBody = `Thank you for signing up to MealMate! This message is to confrim that you have signed up as a Receiver with the username ${username}.`
+    const mailOptions = {
+        from: 'MealMate747@gmail.com',
+        to: username,
+        subject: 'Sign Up Confirmation',
+        text: messageBody
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+            res.json({yo: 'error'});
+        } else {
+            console.log('Message sent: ' + info.response);
+            res.json({yo: info.response});
+        };
+    });
+    return next();
+};
 dbController.checkLogin = (req,res,next) =>{
     const user = req.body.userId;
     const pass = req.body.password;
