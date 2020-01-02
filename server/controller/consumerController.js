@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin
 const consumerController ={};
 const pool = require('../database/database')
 const nodemailer = require('nodemailer');
@@ -42,6 +45,7 @@ consumerController.getMenuItems = (req,res,next)=>{
     })
 }
 
+<<<<<<< HEAD
 
 consumerController.sendReservationEmail = (req, res, next) => {
     console.log('trying to send reservation email')
@@ -74,4 +78,6 @@ consumerController.sendReservationEmail = (req, res, next) => {
     return next();
 };
 
+=======
+>>>>>>> origin
 module.exports = consumerController;

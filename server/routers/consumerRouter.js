@@ -14,4 +14,5 @@ router.get('/menuItems',consumerController.getMenuItems,(req,res)=>{
     res.json(res.locals.data);
 })
 
+
 module.exports = router;

@@ -31,6 +31,9 @@
     "build": "cross-env NODE_ENV=production webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+
+    "start-dev": "nodemon server/server",
+
     "dev": "concurrently \"cross-env webpack-dev-server --open\" \"cross-env nodemon server/server.js || true\""
   },
   "eslintConfig": {
