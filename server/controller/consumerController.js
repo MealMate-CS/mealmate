@@ -30,34 +30,29 @@ consumerController.createReservation = (req, res, next) => {
     return next();
 }
 
-consumerController.sendReservationEmail = (req, res, next) => {
-    console.log('trying to send reservation email')
-    const restaurant = req.body.restaurant;
-    const username = req.body.userId;
-    const timeFrame = req.body.timeFrame;
-    const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'MealMate747@gmail.com',
-            pass: 'MealMate1234'
-        }
-    });
-    const messageBody = `This message serves to confirm that you have set a reservation for ${restaurant} set at ${timeFrame}.`
-    const mailOptions = {
-        from: 'MealMate747@gmail.com',
-        to: username,
-        subject: 'Reservation Confirmation',
-        text: messageBody
-    };
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            console.log(error);
-            res.json({yo: 'error'});
-        } else {
-            console.log('Message sent: ' + info.response);
-            res.json({yo: info.response});
-        };
-    });
-    return next();
-};
+consumerController.getAddress = (req, res, next) => {
+  const text = 'SElECT address FROM donor'
+  pool.query(text, (error, results) => {
+    if (error){
+      throw error;
+    } else {
+      res.locals.results = results.rows
+      return next();
+    }
+  })
+}
+
+consumerController.getItems = (req, res, next) => {
+  const text = `SELECT * FROM menu`
+  pool.query(text, (error, results) => {
+    if (error){
+      throw error;
+    } else {
+      res.locals.results = results.rows
+      return next();
+    }
+  })
+}
+
 module.exports = consumerController;
+
