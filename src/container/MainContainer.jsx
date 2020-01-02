@@ -14,6 +14,7 @@ class MainContainer extends React.Component {
             userType : '',
             userId : '',
             errorMessage : '',
+            userOrganization: '',
             isLoggedInAsDonor: false,
             isLoggedInAsReceiver: false,
             //donor states
@@ -79,7 +80,7 @@ class MainContainer extends React.Component {
             newUserOrganization : this.state.newUserOrganization,
             newUserAddress : this.state.newUserAddress
         }
-        console.log('body11 in signupsubmti for donor', body)
+        // console.log('body11 in signupsubmti for donor', body)
         fetch('/db/donorSignUp', {
             method: 'POST', 
             body: JSON.stringify(body), 
@@ -87,8 +88,9 @@ class MainContainer extends React.Component {
         })
         .then(data => data.json())
         .then(result => {
+            console.log('reuslttttttt', result)
            if (result === 'Donor Created') {
-               this.setState({isLoggedInAsDonor:true, userId:this.state.newUserId})
+               this.setState({isLoggedInAsDonor:true, userId:this.state.newUserId, userOrganization:this.state.newUserOrganization})
            }
         })
         .catch(err => {
@@ -114,7 +116,7 @@ class MainContainer extends React.Component {
                 console.log('user is reciever')
                 this.setState({isLoggedInAsReceiver:true, userId:result.username})
             } else {
-                this.setState({isLoggedInAsDonor:true, userId:result.username})
+                this.setState({isLoggedInAsDonor:true, userId:result.username, userOrganization:result.name})
             }
 
         })
@@ -129,7 +131,8 @@ class MainContainer extends React.Component {
         if (this.state.isLoggedInAsDonor) {
             mainRendered = 
                 <div id='donor-main-page'>
-                    <DonorMainPage userId={this.state.userId} errorMessage={this.state.errorMessage}/>
+                    <DonorMainPage userId={this.state.userId} errorMessage={this.state.errorMessage} 
+                    userOrganization={this.state.userOrganization}/>
                 </div>
 
         } else if (this.state.isLoggedInAsReceiver) {
