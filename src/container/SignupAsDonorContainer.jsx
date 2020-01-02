@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-class SignupAsDonorContainer extends React.Component {
+class SignupAsDonorContainer extends Component {
     constructor(props) {
         super(props)
         this.state = {
