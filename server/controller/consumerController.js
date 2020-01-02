@@ -22,4 +22,15 @@ consumerController.createReservation = (req, res, next) => {
         res.status(200).send(`Reservation set for ${restaurant} from ${timeFrame}`)
     })
 }
+
+consumerController.getAddress = (req, res, next) => {
+    pool.query('SELECT address FROM Donor', (error, results) => {
+      if (error){
+        throw error;
+      }
+      res.locals.results = results.rows
+      return next();
+    })
+}
+
 module.exports = consumerController;
