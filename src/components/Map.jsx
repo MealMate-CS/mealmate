@@ -6,7 +6,7 @@ const Map = () => {
 
   const googleAPI = 'AIzaSyAXSvD9_IUVXmkaj943_LTKjXxrlWXFTHY'
 
-  //default to venice beach, ca
+  // default lat/lng to venice beach, ca
   const [currLat, setLat] = useState(33.875220);
   const [currLng, setLng] = useState(-118.409370);
   const [donorLatLng, setDonorLatLng] = useState([]);
