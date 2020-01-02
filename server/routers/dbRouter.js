@@ -12,4 +12,5 @@ router.post('/receiverSignUp', dbController.receiverSignUp,(req,res)=>{
 router.get('/userLogin',dbController.checkLogin,(req,res)=>{
     res.json(res.locals.type);
 })
+
 module.exports = router;
