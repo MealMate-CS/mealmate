@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import {images} from '../slideshow_images/images'
 import { Gallery, GalleryImage} from 'react-gesture-gallery'
 
