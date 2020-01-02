@@ -22,4 +22,5 @@ consumerController.createReservation = (req, res, next) => {
         res.status(200).send(`Reservation set for ${restaurant} from ${timeFrame}`)
     })
 }
+
 module.exports = consumerController;

@@ -3,13 +3,14 @@ const router = express.Router();
 const dbController = require('../controller/dbController');
 
 router.post('/donorSignUp',dbController.donorSignUp,(req,res)=>{
-    res.sendStatus(200);
+    res.json('Donor');
 })
 router.post('/receiverSignUp', dbController.receiverSignUp,(req,res)=>{
-    res.sendStatus(200);
+    res.json('Receiver');
 })
+
 router.get('/userLogin',dbController.checkLogin,(req,res)=>{
-    res.sendStatus(200);
+    res.json(res.locals.type);
 })
 
 module.exports = router;
