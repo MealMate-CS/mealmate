@@ -6,11 +6,11 @@ const bodyParser = require('body-parser');;
 const cookieParser = require('cookie-parser');
 app.use(bodyParser.urlencoded({
     extended: true
-  }));
-  app.use(bodyParser.json());
+}));
+app.use(bodyParser.json());
   
-  app.use(cookieParser());
-  app.use(express.json());
+app.use(cookieParser());
+app.use(express.json());
 
   const dbRouter = require('./routers/dbRouter');
   const consumerRouter = require('./routers/consumerRouter');
