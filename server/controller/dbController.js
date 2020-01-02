@@ -52,11 +52,13 @@ dbController.receiverSignUp = (req, res, next) =>{
     const user = req.body.newUserId;
     const pass = req.body.newPassword;
     const phoneNumber = req.body.newUserPhoneNumber;
+    console.log(user, pass, phoneNumber)
     const text = 'INSERT INTO Receiver (username, password, phoneNumber) VALUES($1,$2,$3)';
     const values = [user,pass,phoneNumber];
-    db.query(text,values, (err,data)=>{
+    db.query(text,values, (err,data)=>{ 
         if(err) return err;
         else{
+            console.log(data);
             return next();
         }
     })

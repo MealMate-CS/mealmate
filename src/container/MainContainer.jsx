@@ -109,7 +109,7 @@ class MainContainer extends React.Component {
         }
         console.log('body for loginsubmit', body)
         fetch('/db/userLogin', {
-            method: 'GET', 
+            method: 'POST', 
             body: JSON.stringify(body), 
             headers : {'Content-Type': 'application/json'}
         })
@@ -123,10 +123,6 @@ class MainContainer extends React.Component {
         })
     }
 
-
-
-
-    
     render() {
         let mainRendered;
         if (this.state.isLoggedInAsDonor) {
