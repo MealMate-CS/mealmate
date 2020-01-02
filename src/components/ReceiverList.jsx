@@ -12,10 +12,6 @@ const ReceiverList = () => {
     .catch(err => console.log(err))
   })
 
-  // const list = donors.map(() => {
-
-  // })
-
   return(
     <div className='receiver-list'>
       List

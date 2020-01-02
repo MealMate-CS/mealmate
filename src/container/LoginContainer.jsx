@@ -8,7 +8,7 @@ const LoginContainer = (props) => {
                 <input type='input' id='login-username' placeholder='Your Username' onChange={props.setLoginId} required />
                 <input type='password' id='login-password' placeholder='Your Password' onChange={props.setLoginPassword} required />
                 <input type='button' id='login-button' value='Log In' onClick={props.loginSubmit}/>
-                {props.errorMessage}
+                {/* {props.errorMessage} */}
                 <Link to='/signupasreceiver'>
                     <input type='button' id='receiver-signup-button' value='Sign Up As Receiver'></input>
                 </Link>

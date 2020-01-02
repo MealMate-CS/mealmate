@@ -5,6 +5,7 @@ import ReceiverList from '../components/ReceiverList.jsx';
 const ReceiverContainer = (props) => {
   return(
     <div id="receiver-container">
+      Hello {props.userId}
       <Map/>
       <ReceiverList/>
     </div>
