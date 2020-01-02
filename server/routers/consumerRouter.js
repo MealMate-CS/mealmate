@@ -11,5 +11,8 @@ router.post('/reservation', consumerController.createReservation, (req, res) => 
     res.sendStatus(200)
 })
 
+router.get('/donorAddress', consumerController.getAddress, (req, res) => {
+  res.json(res.locals.results)
+})
 
 module.exports = router;
