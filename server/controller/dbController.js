@@ -7,8 +7,8 @@ dbController.donorSignUp = (req,res,next) =>{
     const phoneNumber = req.body.newUserPhoneNumber;
     const name = req.body.newUserOrganization;
     const address = req.body.newUserAddress;
-    const text = 'INSERT INTO Donor (username,password,type, phoneNumber,name,address) VALUES($1,$2,$3,$4,$5,$6)';
-    const values = [user,pass,type,phoneNumber,name,address];
+    const text = 'INSERT INTO Donor (username,password, phoneNumber,name,address) VALUES($1,$2,$3,$4,$5)';
+    const values = [user,pass,phoneNumber,name,address];
     
     db.query(text,values,(err,data)=>{
         if(err) return err;
@@ -21,11 +21,13 @@ dbController.receiverSignUp = (req, res, next) =>{
     const user = req.body.newUserId;
     const pass = req.body.newPassword;
     const phoneNumber = req.body.newUserPhoneNumber;
+    console.log(user, pass, phoneNumber)
     const text = 'INSERT INTO Receiver (username, password, phoneNumber) VALUES($1,$2,$3)';
     const values = [user,pass,phoneNumber];
-    db.query(text,values, (err,data)=>{
+    db.query(text,values, (err,data)=>{ 
         if(err) return err;
         else{
+            console.log(data);
             return next();
         }
     })

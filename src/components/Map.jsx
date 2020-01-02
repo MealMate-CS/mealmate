@@ -66,8 +66,8 @@ const Map = () => {
 
   // create GoogleMap with markers
   const GeoMap = () => {
-    console.log('line 69',currLng)
-    console.log('line 70',currLat)
+    // console.log('line 69',currLng)
+    // console.log('line 70',currLat)
     return(
       <GoogleMap
         defaultZoom={10}
