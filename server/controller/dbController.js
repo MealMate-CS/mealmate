@@ -1,9 +1,8 @@
 const dbController = {};
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 
 const db = require('../database/database');
 dbController.donorSignUp = (req,res,next) =>{
-    console.log('trying to signup as donor')
     const user = req.body.newUserId;
     const pass = req.body.newPassword;
     const phoneNumber = req.body.newUserPhoneNumber;
@@ -46,7 +45,7 @@ dbController.sendDonorEmail = (req, res, next) => {
             res.json({yo: info.response});
         };
     });
-    return next();
+    next();
 };
 dbController.receiverSignUp = (req, res, next) =>{
     const user = req.body.newUserId;
@@ -62,7 +61,7 @@ dbController.receiverSignUp = (req, res, next) =>{
             return next();
         }
     })
-};
+}
 dbController.sendReceiverEmail = (req, res, next) => {
     console.log('trying to send receiver email')
     const username = req.body.newUserId;
@@ -89,7 +88,7 @@ dbController.sendReceiverEmail = (req, res, next) => {
             res.json({yo: info.response});
         };
     });
-    return next();
+    next();
 };
 dbController.checkLogin = (req,res,next) =>{
     const user = req.body.userId;

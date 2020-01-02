@@ -1,6 +1,6 @@
 const consumerController ={};
 const pool = require('../database/database')
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 
 consumerController.recentHistory = (req, res, next) => {
     const userId = req.body.userId

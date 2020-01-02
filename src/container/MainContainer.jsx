@@ -79,7 +79,7 @@ class MainContainer extends React.Component {
             newUserOrganization : this.state.newUserOrganization,
             newUserAddress : this.state.newUserAddress
         }
-        console.log('body in signupsubmit for donor', body)
+        console.log('body11 in signupsubmti for donor', body)
         fetch('/db/donorSignUp', {
             method: 'POST', 
             body: JSON.stringify(body), 
