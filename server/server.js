@@ -6,11 +6,17 @@ const bodyParser = require('body-parser');;
 const cookieParser = require('cookie-parser');
 app.use(bodyParser.urlencoded({
     extended: true
-  }));
-  app.use(bodyParser.json());
-  
-  app.use(cookieParser());
-  app.use(express.json());
+}));
+app.use(bodyParser.json());
+
+app.use('/', express.static(path.resolve(__dirname, '../build')));
+
+
+app.get('/',(req,res)=>{
+  res.sendFile(path.resolve(__dirname,'../public/index.html'));
+})
+app.use(cookieParser());
+app.use(express.json());
 
   const dbRouter = require('./routers/dbRouter');
   const consumerRouter = require('./routers/consumerRouter');
