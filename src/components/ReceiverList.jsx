@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ReceiverList = () => {
+
+  const [donors, setDonors] = useState([])
+
+  //grab list of donors
+  useEffect(() => {
+    fetch('/getDonors')
+    .then(res => res.json())
+    .then(data => setDonors(data))
+    .catch(err => console.log(err))
+  })
+
   return(
-    <div id="receiver-list">
-      receiverlist
+    <div className='receiver-list'>
+      List
     </div>
   )
 }
