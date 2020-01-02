@@ -1,21 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker } from 'react-google-maps';
 import Geocode from 'react-geocode';
-
-// set up Google API to use react-geocode
-Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`)
-
-// set default location to venice beach, ca
-let currLat = 33.875220;
-let currLng = -118.409370;
-
-// grab geolocation of user device and change location if available
-navigator.geolocation.getCurrentPosition(position => {
-  if (position) {
-    currLat = position.coords.latitude;
-    currLng = position.coords.longitude;
-  }
-})
 
 // grab addresses of donors and convert to lat/lng via react-geocode in order to create Markers
 // const Geocodes = () => {
@@ -47,40 +32,55 @@ navigator.geolocation.getCurrentPosition(position => {
 // }
 
 // TEST ONLY; pending fetch from back-end
-let data = ['1600 main street, venice beanch, ca', '1155 s grand ave, los angeles, ca']
-let coordinates = [];
-data.map(element => {
-  Geocode.fromAddress(`${element}`).then(
-  response => {
-    const { lat, lng } = response.results[0].geometry.location;
-    coordinates.push({
-      lat: lat,
-      lng: lng
-    })
-  },
-  error => {
-    console.error(error);
-  }
-  );
-})
-// console.log(coordinates)
-
-// create GoogleMap with markers
-const GeoMap = () => {
-  return(
-    <GoogleMap
-      defaultZoom={10}
-      defaultCenter={{lat: currLat, lng: currLng}}
-    >
-      <Marker position={{lat: 33.875220, lng: -118.409370}}/>
-    </GoogleMap>
-  )
-}
-
-// wrap GoogleMap to embed javascript
-const WrappedMap = withScriptjs(withGoogleMap(GeoMap));
+// let data = ['1600 main street, venice beanch, ca', '1155 s grand ave, los angeles, ca']
+// let coordinates = [];
+// data.map(element => {
+//   Geocode.fromAddress(`${element}`).then(
+//   response => {
+//     const { lat, lng } = response.results[0].geometry.location;
+//     coordinates.push({
+//       lat: lat,
+//       lng: lng
+//     })
+//   },
+//   error => {
+//     console.error(error);
+//   }
+//   );
+// })
 
 const Map = () => {
+
+  //default to venice beach, ca
+  const [currLat, setLat] = useState(33.875220);
+  const [currLng, setLng] = useState(-118.409370);
+
+  // set up Google API to use react-geocode
+  Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`);
+
+  // get geolocation of user
+  navigator.geolocation.getCurrentPosition(position => {
+    setLat(position.coords.latitude);
+    setLng(position.coords.longitude);
+  });
+
+  // create GoogleMap with markers
+  const GeoMap = () => {
+    // console.log('line 69',currLng)
+    // console.log('line 70',currLat)
+    return(
+      <GoogleMap
+        defaultZoom={10}
+        defaultCenter={{lat: currLat, lng: currLng}}
+      >
+        <Marker position={{lat: currLat, lng: currLng}}/>
+      </GoogleMap>
+    )
+  }
+
+  // wrap GoogleMap to embed javascript
+  const WrappedMap = withScriptjs(withGoogleMap(GeoMap));
+
   return(
     <div id="map">
       <WrappedMap
