@@ -19,6 +19,7 @@ dbController.donorSignUp = (req,res,next) =>{
     })
 }
 dbController.sendDonorEmail = (req, res, next) => {
+    console.log('trying to send')
     const user = req.body.newUserId;
     const name = req.body.newUserOrganization;
     const transporter = nodemailer.createTransport({
@@ -44,6 +45,7 @@ dbController.sendDonorEmail = (req, res, next) => {
             res.json({yo: info.response});
         };
     });
+    return next();
 };
 dbController.receiverSignUp = (req, res, next) =>{
     const user = req.body.newUserId;

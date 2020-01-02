@@ -42,8 +42,8 @@ class SignupAsDonorContainer extends React.Component {
             newUserOrganization : this.state.newUserOrganization,
             newUserAddress : this.state.newUserAddress
         }
-        console.log('body in signupsubmti for donor', body)
-        fetch('/donorsignup', {
+        console.log('body in signupsubmit for donor', body)
+        fetch('/donorSignUp', {
             method: 'POST', 
             body: JSON.stringify(body), 
             headers : {'Content-Type': 'application/json'}
