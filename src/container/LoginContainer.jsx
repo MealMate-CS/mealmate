@@ -1,5 +1,10 @@
 import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 class LoginContainer extends React.Component {
     constructor(props) {
@@ -9,7 +14,9 @@ class LoginContainer extends React.Component {
             userId : '',
             password : '',
             userType : '',
-            errorMessage : ''
+            errorMessage : '',
+            isLoggedInAsDonor: false,
+            isLoggedInAsReceiver: false
         }
 
     // this.loginButton = this.loginButton.bind(this)    
@@ -31,11 +38,19 @@ class LoginContainer extends React.Component {
             userId : this.state.userId,
             password : this.state.password
         }
-        // fetch('/')
-
-
-
-
+        fetch('/userlogin', {
+            method: 'GET', 
+            body: JSON.stringify(body), 
+            headers : {'Content-Type': 'application/json'}
+        })
+        .then(data => data.json())
+        .then(result => {
+            console.log('result in loginSubmit =>', result)
+        })
+        .catch(err => {
+            console.log(err)
+            this.setState({errorMessage: `${JSON.stringify(err)}`})
+        })
     }
 
     
@@ -48,9 +63,13 @@ class LoginContainer extends React.Component {
                     <input type='password' id='login-password' placeholder='Your Password' onChange={this.setLoginPassword} required />
                     <input type='button' id='login-button' value='Log In' onClick={this.loginSubmit}/>
                     {this.state.errorMessage}
-
+                    <Link to='/signupasreceiver'>
+                        <input type='button' id='receiver-signup-button' value='Sign Up As Receiver'></input>
+                    </Link>
+                    <Link to='/signupasdonor'>
+                        <input type='button' id='donor-signup-button' value='Sign Up as Donor'></input>
+                    </Link>
                 </section>
-
             </div>
         )
     }

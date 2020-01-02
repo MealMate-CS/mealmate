@@ -1,4 +1,5 @@
 const dbController = {};
+
 const db = require('../database/database');
 dbController.donorSignUp = (req,res,next) =>{
     const user = req.body.newUserId;
@@ -51,4 +52,5 @@ dbController.checkLogin = (req,res,next) =>{
         }
     })
 }
+
 module.exports = dbController;

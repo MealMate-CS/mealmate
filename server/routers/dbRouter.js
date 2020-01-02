@@ -11,4 +11,5 @@ router.post('/receiverSignUp', dbController.receiverSignUp,(req,res)=>{
 router.get('/userLogin',dbController.checkLogin,(req,res)=>{
     res.sendStatus(200);
 })
+
 module.exports = router;
