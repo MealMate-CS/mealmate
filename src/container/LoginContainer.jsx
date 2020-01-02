@@ -38,7 +38,7 @@ class LoginContainer extends React.Component {
             userId : this.state.userId,
             password : this.state.password
         }
-        fetch('/userlogin', {
+        fetch('/userLogin', {
             method: 'GET', 
             body: JSON.stringify(body), 
             headers : {'Content-Type': 'application/json'}
