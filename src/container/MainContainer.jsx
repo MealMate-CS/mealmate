@@ -34,19 +34,15 @@ class MainContainer extends React.Component {
     }
 
     setSignupId(event) {
-        console.log('ID is', event.target.value)
-        this.setState({newUserId:event.target.value})
+        this.setState({userId:event.target.value, newUserId:event.target.value})
     }
     setSignupPassword(event) {
-        console.log('PW is', event.target.value)
-        this.setState({newPassword:event.target.value})
+        this.setState({password:event.target.value, newPassword:event.target.value})
     }
     setPhoneNumber(event) {
-        console.log('phone number is', event.target.value)
         this.setState({newUserPhoneNumber:event.target.value})
     }
     setSignupOrganization(event) {
-        console.log('Org name is', event.target.value)
         this.setState({newUserOrganization:event.target.value})
     }
     setAddress(event) {
@@ -59,7 +55,6 @@ class MainContainer extends React.Component {
             newPassword : this.state.newPassword,
             newUserPhoneNumber : this.state.newUserPhoneNumber
         }
-        console.log('body for signupSubmit is', body)
         fetch('/db/receiverSignUp', {
             method: 'POST', 
             body: JSON.stringify(body), 
@@ -67,8 +62,9 @@ class MainContainer extends React.Component {
         })
         .then(data => data.json())
         .then(result => {
-            this.setState({isLoggedInAsReceiver:true})
-            console.log('result in loginSubmit =>', result)
+            if (result === 'Receiver Created') {
+                this.setState({userId:this.state.newUserId, isLoggedInAsReceiver:true})
+            }
         })
         .catch(err => {
             console.log(err)
@@ -83,7 +79,11 @@ class MainContainer extends React.Component {
             newUserOrganization : this.state.newUserOrganization,
             newUserAddress : this.state.newUserAddress
         }
+<<<<<<< HEAD
         console.log('body in signupsubmit for donor', body)
+=======
+        console.log('body11 in signupsubmti for donor', body)
+>>>>>>> cc260b74dc657ff6b87dc0716aa43e6afb4a486a
         fetch('/db/donorSignUp', {
             method: 'POST', 
             body: JSON.stringify(body), 
@@ -91,11 +91,9 @@ class MainContainer extends React.Component {
         })
         .then(data => data.json())
         .then(result => {
-            if (result === 'Receiver') {
-                this.setState({isLoggedInAsReceiver:true})
-            } else if (result === 'Donor') {
-                this.setState({isLoggedInAsReceiver:true})
-            }
+           if (result === 'Donor Created') {
+               this.setState({isLoggedInAsDonor:true, userId:this.state.newUserId})
+           }
         })
         .catch(err => {
             console.log(err)
@@ -116,6 +114,13 @@ class MainContainer extends React.Component {
         .then(data => data.json())
         .then(result => {         
             console.log('result in loginSubmit =>', result)
+            if (Object.keys(result).length === 3) {
+                console.log('user is reciever')
+                this.setState({isLoggedInAsReceiver:true, userId:result.username})
+            } else {
+                this.setState({isLoggedInAsDonor:true, userId:result.username})
+            }
+
         })
         .catch(err => {
             console.log(err)

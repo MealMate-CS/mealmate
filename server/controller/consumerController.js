@@ -20,7 +20,7 @@ consumerController.createReservation = (req, res, next) => {
     // const createdAt = Math.floor(Date.now() / 1000);
     const timeFrame = req.body.timeFrame;
     const userId = req.body.userId;
-    pool.query('INSERT INTO History (username, restaurant, timeFrame, createdAt) VALUES ($1, $2, $3, NOW())', [userId, restaurant, timeFrame], (error, results) => {
+    pool.query('INSERT INTO History (username, restaurant, time_frame, created_at) VALUES ($1, $2, $3, NOW())', [userId, restaurant, timeFrame], (error, results) => {
         if(error) {
             throw error
         } else {
