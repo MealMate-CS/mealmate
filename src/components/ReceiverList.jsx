@@ -26,7 +26,7 @@ const ReceiverList = () => {
   })
 
   return(
-    <div id="receiver-list">
+    <div id='receiver-list'>
       <h3>Items Available</h3>
       {list}
     </div>

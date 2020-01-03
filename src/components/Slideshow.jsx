@@ -25,8 +25,8 @@ function Slideshow() {
                 setIndex(i);
             }}
         >
-            {images.map(image => (
-                <GalleryImage objectFit="fit" src={image} style={{height: '400px', width: 'auto'}}/>
+            {images.map((image, i) => (
+                <GalleryImage key={i} objectFit="fit" src={image} style={{height: '400px', width: 'auto'}}/>
             ))}
         </Gallery>
     )

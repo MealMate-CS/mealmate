@@ -6,7 +6,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Share Love with MealMate</h1>  
+        <img src='mealmate.png'/>
+        <h1 id='title'>Share Love with MealMate</h1>  
       </header>
     <MainContainer/>
     </div>

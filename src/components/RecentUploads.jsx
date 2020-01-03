@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const RecentUploads = (props) => {
+    
     return(
         <div id='recent-uploads'>
             {props.itemsListed}
