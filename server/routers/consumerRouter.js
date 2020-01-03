@@ -6,7 +6,7 @@ router.get('/recents', consumerController.recentHistory, (req, res) => {
     res.status(200).json(res.locals.results);
 })
 
-router.post('/reservation', consumerController.createReservation, (req, res) => {
+router.post('/reservation', consumerController.createReservation, consumerController.sendReservationEmail, (req, res) => {
     res.sendStatus(200)
 })
 
