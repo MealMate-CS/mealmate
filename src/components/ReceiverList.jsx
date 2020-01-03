@@ -1,20 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
+import ReceiverItem from './ReceiverItem.jsx';
 
 const ReceiverList = () => {
 
-  const [donors, setDonors] = useState([])
+  const [items, setItems] = useState([]);
 
-  //grab list of donors
   useEffect(() => {
-    fetch('/getDonors')
+    fetch('/consumer/getItems')
     .then(res => res.json())
-    .then(data => setDonors(data))
+    .then(data => setItems(data))
     .catch(err => console.log(err))
+  }, [])
+
+ 
+  const list = [];
+
+  items.forEach((element, i) => {
+    list.push(<ReceiverItem 
+      key={i}
+      itemname={element.itemname}
+      allergy={element.allergy}
+      expirationdate={element.expirationdate}
+      name={element.name}
+    />)
   })
 
   return(
-    <div className='receiver-list'>
-      List
+    <div id='receiver-list'>
+      <h3>Items Available</h3>
+      {list}
     </div>
   )
 }
