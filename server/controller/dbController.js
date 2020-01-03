@@ -1,4 +1,3 @@
-const nodemailer = require('nodemailer');
 const dbController = {};
 const nodemailer = require('nodemailer');
 
@@ -19,6 +18,7 @@ dbController.donorSignUp = (req,res,next) =>{
         }
     })
 }
+
 dbController.sendDonorEmail = (req, res, next) => {
     console.log('trying to send email')
     const user = req.body.newUserId;
