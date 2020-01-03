@@ -1,3 +1,7 @@
+#title {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .receiver-container {
   display: flex;
 }
@@ -11,6 +15,12 @@
   height: 100%
 }
 
+#receiver-components {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -22,4 +32,8 @@
 
 .login-home {
   color: white;
+}
+
+.btn {
+  margin: 1px 1px;
 }

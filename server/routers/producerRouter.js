@@ -13,4 +13,9 @@ router.post('/pushItemsToMenu', producerController.pushItemIntoMenuTable,(req,re
 router.get('/getDisplayItems',producerController.displayItems, (req,res)=>{
     res.json(res.locals.items);
 })
+router.post('/producerItems', producerController.producerItems,(req,res)=>{
+    res.json(res.locals.data);
+})
 module.exports = router;
+
+

@@ -7,13 +7,13 @@ const LoginContainer = (props) => {
             <section id="user-login-input">
                 <input type='input' id='login-username' placeholder='Your Username' onChange={props.setLoginId} required />
                 <input type='password' id='login-password' placeholder='Your Password' onChange={props.setLoginPassword} required />
-                <input type='button' id='login-button' value='Log In' onClick={props.loginSubmit}/>
+                <button type='button' className="btn btn-warning" value='Log In' onClick={props.loginSubmit}>Log In</button>
                 {/* {props.errorMessage} */}
                 <Link to='/signupasreceiver'>
-                    <input type='button' id='receiver-signup-button' value='Sign Up As Receiver'></input>
+                    <button type='button' className="btn btn-warning" value='Sign Up As Receiver'>Sign Up as Receiver</button>
                 </Link>
                 <Link to='/signupasdonor'>
-                    <input type='button' id='donor-signup-button' value='Sign Up as Donor'></input>
+                    <button type='button' className="btn btn-warning" value='Sign Up as Donor'>Sign Up as Donor</button>
                 </Link>
             </section>
         </div>
